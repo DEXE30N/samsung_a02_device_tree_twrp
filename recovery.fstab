@@ -1,0 +1,23 @@
+# Dynamic partitions
+system      /system     ext4   ro
+vendor      /vendor     ext4   ro
+product     /product    ext4   ro
+odm         /odm        ext4   ro
+
+# Metadata
+/dev/block/platform/bootdevice/by-name/md_udc   /metadata   ext4   noatime,nosuid,nodev
+
+# Data (F2FS with encryption)
+ /dev/block/platform/bootdevice/by-name/userdata  /data  f2fs  noatime,nosuid,nodev,discard,fileencryption=aes-256-xts:aes-256-cts:v1
+
+# Cache (if exists)
+/dev/block/platform/bootdevice/by-name/cache     /cache   ext4   defaults
+
+# Misc
+/dev/block/platform/bootdevice/by-name/misc      /misc    emmc   defaults
+
+# Boot
+/dev/block/platform/bootdevice/by-name/boot      /boot    emmc   defaults
+
+# Recovery
+/dev/block/platform/bootdevice/by-name/recovery  /recovery emmc  defaults
